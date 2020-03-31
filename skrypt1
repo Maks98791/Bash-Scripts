@@ -1,0 +1,25 @@
+#!/bin/bash
+if [ -d $1 ]
+then
+	cd $1
+	listaplikow=`ls -S`
+	rozszerzenie=1
+	for plik in $listaplikow
+	do
+		if [ -d $plik ]
+		then
+			continue
+		else
+			echo $numerpliku
+			mv $plik $plik$rozszerzenie
+			let rozszerzenie=$rozszerzenie+1
+			echo $plik
+		fi
+	done
+else
+	echo "$1 nie jest katalogiem"
+	exit 1
+fi
+
+
+

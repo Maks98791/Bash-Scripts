@@ -1,0 +1,14 @@
+#!/bin/bash
+if [ $# -ne 1 ]
+then
+        echo "Niepoprawna liczba argumentów."
+        exit 1
+fi
+
+if [ ! -d $1 ]
+then
+        echo "$1 nie jest katalogiem!"
+        exit 1
+fi
+
+find $1 -type f -exec basename \{} .po \; | grep '[[:lower:]][[:upper:]][[:lower:]]' | awk '{ pozycjaDuzej=match($0,"[A-Z]"); pierwszyCzlon=substr($0,1,pozycjaDuzej); gsub("[A-Z]",tolower(substr(pierwszyCzlon,pozycjaDuzej,1))+_,$0); print }'

@@ -1,0 +1,13 @@
+#!/bin/bash
+
+if [ ! -d $1 $2 ]
+then
+	echo "bledne argumenty"
+	exit 0
+else
+	mkdir NOWYKATALOG
+	for var in `find -P $1 $2 -type e -ls`
+	do
+		cp $var $NOWYKATALOG
+	done
+fi

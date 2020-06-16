@@ -1,0 +1,18 @@
+#!/bin/bash
+if [[ ! -d $1 ]] || [[ $# -ne 1 ]]
+then
+	echo "podaj poprawny argument"
+	exit 0
+else
+	cd $1
+	DOWIAZANIA=`ls`
+	for var in $DOWIAZANIA
+	do
+		if [ readlink $var ]
+		then
+			realpath $var | sed 's|\(.*\)/.*|\1|'
+		else
+			continue
+		fi
+	done
+fi

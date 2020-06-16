@@ -1,0 +1,10 @@
+#!/bin/bash
+
+if [ ! -d $1 ]
+then
+	echo "podany argument nie jest katalogiem"
+	exit 0
+else
+	find -P KATALOG -type d \(! -perm -400 -or ! -perm -002\) \
+\( -perm 020 -or -perm -002 \) -print
+fi
